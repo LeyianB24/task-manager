@@ -3,6 +3,7 @@ defmodule ChatAppWeb.UserSocket do
 
   # Channels
   channel "chat_room:*", ChatAppWeb.ChatRoomChannel
+  channel "board:*", ChatAppWeb.BoardChannel
 
   @impl true
   def connect(_params, socket, _connect_info) do
