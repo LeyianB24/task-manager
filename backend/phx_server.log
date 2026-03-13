@@ -1,3 +1,5 @@
+Compiling 8 files (.ex)
+Compiling 3 files (.ex)
 Warning: the `dialyxir` application's start function was called, which likely means you
 did not add the dependency with the `runtime: false` flag. This is not recommended because
 it will mean that unnecessary applications are started, and unnecessary applications are most
@@ -8,57 +10,3 @@ Please add `runtime: false` in your `mix.exs` dependency section e.g.:
 [warning] Phoenix is unable to create symlinks. Phoenix' code reloader will run considerably faster if symlinks are allowed. On Windows, the lack of symlinks may even cause empty assets to be served. Luckily, you can address this issue by starting your Windows terminal at least once with "Run as Administrator" and then running your Phoenix application.
 [info] Running ChatAppWeb.Endpoint with Bandit 1.6.1 at 127.0.0.1:4000 (http)
 [info] Access ChatAppWeb.Endpoint at http://localhost:4000
-[info] POST /api/users/login
-[debug] Processing with ChatAppWeb.SessionController.create/2
-  Parameters: %{"email" => "apitest2@example.com", "password" => "[FILTERED]"}
-  Pipelines: [:api]
-[debug] QUERY OK source="users" db=22.2ms queue=4.4ms idle=1427.0ms
-SELECT u0."id", u0."email", u0."name", u0."password_hash", u0."inserted_at", u0."updated_at" FROM "users" AS u0 WHERE (u0."email" = $1) ["apitest2@example.com"]
-[90m↳ ChatApp.Accounts.authenticate_user/2, at: lib/chat_app/accounts.ex:109[0m
-[info] Sent 200 in 2237ms
-[info] OPTIONS /api/users/register
-[info] Sent 200 in 409µs
-[info] POST /api/users/register
-[debug] Processing with ChatAppWeb.UserController.create/2
-  Parameters: %{"user" => %{"email" => "final@example.com", "name" => "Final User", "password" => "[FILTERED]"}}
-  Pipelines: [:api]
-[debug] QUERY OK source="users" db=11.2ms queue=1.8ms idle=1743.0ms
-INSERT INTO "users" ("email","name","password_hash","inserted_at","updated_at","id") VALUES ($1,$2,$3,$4,$5,$6) ["final@example.com", "Final User", "$pbkdf2-sha512$160000$XbQV.576CKWBtC1y.aQQAQ$oGjRizDI3Km7XUa6aq/RnnZDMIH2897EIIQrv7ztm0ktmDOWGwgWq6emE0aLQXQEXqZAskexPgyai7KpyivJHw", ~U[2026-03-13 07:38:49Z], ~U[2026-03-13 07:38:49Z], "37f2e482-8527-4b39-bd09-9ad5a9131ebf"]
-[90m↳ ChatAppWeb.UserController.create/2, at: lib/chat_app_web/controllers/user_controller.ex:10[0m
-[info] Sent 201 in 2781ms
-[info] OPTIONS /api/users/login
-[info] Sent 200 in 614µs
-[info] POST /api/users/login
-[debug] Processing with ChatAppWeb.SessionController.create/2
-  Parameters: %{"email" => "final@example.com", "password" => "[FILTERED]"}
-  Pipelines: [:api]
-[debug] QUERY OK source="users" db=9.3ms queue=0.1ms idle=473.1ms
-SELECT u0."id", u0."email", u0."name", u0."password_hash", u0."inserted_at", u0."updated_at" FROM "users" AS u0 WHERE (u0."email" = $1) ["final@example.com"]
-[90m↳ ChatApp.Accounts.authenticate_user/2, at: lib/chat_app/accounts.ex:109[0m
-[info] Sent 200 in 2498ms
-[error] ** (Bandit.HTTPError) Header read socket error: :closed
-[error] GenServer #PID<0.749.0> terminating
-** (Bandit.TransportError) Unrecoverable error: closed
-    (bandit 1.6.1) lib/bandit/http1/socket.ex:437: Bandit.HTTPTransport.Bandit.HTTP1.Socket.socket_error!/1
-    (bandit 1.6.1) lib/bandit/http1/socket.ex:344: Bandit.HTTPTransport.Bandit.HTTP1.Socket.send_headers/4
-    (bandit 1.6.1) lib/bandit/http1/socket.ex:422: Bandit.HTTPTransport.Bandit.HTTP1.Socket.send_on_error/2
-    (bandit 1.6.1) lib/bandit/pipeline.ex:223: Bandit.Pipeline.handle_error/7
-    (bandit 1.6.1) lib/bandit/http1/handler.ex:12: Bandit.HTTP1.Handler.handle_data/3
-    (bandit 1.6.1) lib/bandit/delegating_handler.ex:18: Bandit.DelegatingHandler.handle_data/3
-    (bandit 1.6.1) c:/Users/USER/Desktop/task-manager/backend/deps/thousand_island/lib/thousand_island/handler.ex:417: Bandit.DelegatingHandler.handle_continue/2
-    (stdlib 4.3.1.4) gen_server.erl:1123: :gen_server.try_dispatch/4
-    (stdlib 4.3.1.4) gen_server.erl:865: :gen_server.loop/7
-    (stdlib 4.3.1.4) proc_lib.erl:240: :proc_lib.init_p_do_apply/3
-Last message: {:continue, :handle_connection}
-State: {%ThousandIsland.Socket{socket: #Port<0.17>, transport_module: ThousandIsland.Transports.TCP, read_timeout: 60000, silent_terminate_on_error: false, span: %ThousandIsland.Telemetry{span_name: :connection, telemetry_span_context: #Reference<0.4213652418.1956380674.104234>, start_time: -5764604896140288, start_metadata: %{parent_telemetry_span_context: #Reference<0.4213652418.1956380674.103674>, remote_address: {127, 0, 0, 1}, remote_port: 61003, telemetry_span_context: #Reference<0.4213652418.1956380674.104234>}}}, %{handler_module: Bandit.InitialHandler, http_1_enabled: true, http_2_enabled: true, opts: %{http: [], http_1: [], http_2: [], websocket: []}, plug: {Phoenix.Endpoint.SyncCodeReloadPlug, {ChatAppWeb.Endpoint, []}}}}
-[info] OPTIONS /api/users/login
-[info] Sent 200 in 409µs
-[info] POST /api/users/login
-[debug] Processing with ChatAppWeb.SessionController.create/2
-  Parameters: %{"email" => "final@example.com", "password" => "[FILTERED]"}
-  Pipelines: [:api]
-[debug] QUERY OK source="users" db=6.7ms decode=0.1ms queue=0.1ms idle=1819.3ms
-SELECT u0."id", u0."email", u0."name", u0."password_hash", u0."inserted_at", u0."updated_at" FROM "users" AS u0 WHERE (u0."email" = $1) ["final@example.com"]
-[90m↳ ChatApp.Accounts.authenticate_user/2, at: lib/chat_app/accounts.ex:109[0m
-[info] Sent 200 in 4509ms
-[error] ** (Bandit.HTTPError) Header read timeout
