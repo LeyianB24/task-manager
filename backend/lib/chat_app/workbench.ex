@@ -21,6 +21,12 @@ defmodule ChatApp.Workbench do
     Repo.all(SavedRequest)
   end
 
+  def list_user_saved_requests(user_id) do
+    SavedRequest
+    |> where(user_id: ^user_id)
+    |> Repo.all()
+  end
+
   @doc """
   Gets a single saved_request.
 

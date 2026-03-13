@@ -24,6 +24,11 @@ defmodule ChatAppWeb.Router do
     resources "/workspaces", WorkspaceController, except: [:new, :edit]
     resources "/boards", BoardController, except: [:new, :edit]
     resources "/tasks", TaskController, except: [:new, :edit]
+    
+    resources "/projects", ProjectController, except: [:new, :edit]
+    resources "/project_files", ProjectFileController, except: [:new, :edit]
+    resources "/issues", IssueController, except: [:new, :edit]
+    resources "/saved_requests", SavedRequestController, except: [:new, :edit]
   end
 
   # Enable LiveDashboard in development

@@ -21,6 +21,12 @@ defmodule ChatApp.Projects do
     Repo.all(Project)
   end
 
+  def list_user_projects(user_id) do
+    Project
+    |> where(user_id: ^user_id)
+    |> Repo.all()
+  end
+
   @doc """
   Gets a single project.
 
@@ -117,6 +123,12 @@ defmodule ChatApp.Projects do
     Repo.all(ProjectFile)
   end
 
+  def list_project_files(project_id) do
+    ProjectFile
+    |> where(project_id: ^project_id)
+    |> Repo.all()
+  end
+
   @doc """
   Gets a single project_file.
 
@@ -211,6 +223,12 @@ defmodule ChatApp.Projects do
   """
   def list_issues do
     Repo.all(Issue)
+  end
+
+  def list_project_issues(project_id) do
+    Issue
+    |> where(project_id: ^project_id)
+    |> Repo.all()
   end
 
   @doc """
