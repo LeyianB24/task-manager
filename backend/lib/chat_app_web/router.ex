@@ -21,7 +21,9 @@ defmodule ChatAppWeb.Router do
   scope "/api", ChatAppWeb do
     pipe_through :api_auth
     
-    # Future routes like workspaces, boards, tasks go here
+    resources "/workspaces", WorkspaceController, except: [:new, :edit]
+    resources "/boards", BoardController, except: [:new, :edit]
+    resources "/tasks", TaskController, except: [:new, :edit]
   end
 
   # Enable LiveDashboard in development

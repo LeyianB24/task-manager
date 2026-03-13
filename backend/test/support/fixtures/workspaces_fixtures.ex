@@ -32,4 +32,21 @@ defmodule ChatApp.WorkspacesFixtures do
 
     board
   end
+
+  @doc """
+  Generate a task.
+  """
+  def task_fixture(attrs \\ %{}) do
+    {:ok, task} =
+      attrs
+      |> Enum.into(%{
+        description: "some description",
+        order: 42,
+        status: "some status",
+        title: "some title"
+      })
+      |> ChatApp.Workspaces.create_task()
+
+    task
+  end
 end
