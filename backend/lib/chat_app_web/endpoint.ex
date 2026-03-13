@@ -53,7 +53,7 @@ defmodule ChatAppWeb.Endpoint do
   plug Plug.Session, @session_options
 
   plug Corsica,
-    origins: ["http://localhost:3000"],
+    origins: ["http://localhost:3000", "http://127.0.0.1:3000"],
     allow_methods: ["GET", "POST", "PUT", "PATCH", "DELETE", "OPTIONS"],
     allow_headers: ["content-type", "authorization"],
     allow_credentials: true
