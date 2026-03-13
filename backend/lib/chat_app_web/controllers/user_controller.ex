@@ -10,7 +10,7 @@ defmodule ChatAppWeb.UserController do
     with {:ok, %User{} = user} <- Accounts.create_user(user_params) do
       conn
       |> put_status(:created)
-      |> render(:show, user: user)
+      |> json(%{data: %{id: user.id, email: user.email, name: user.name}})
     end
   end
 end

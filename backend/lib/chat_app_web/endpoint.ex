@@ -54,6 +54,7 @@ defmodule ChatAppWeb.Endpoint do
 
   plug Corsica,
     origins: ["http://localhost:3000"],
+    allow_methods: ["GET", "POST", "PUT", "PATCH", "DELETE", "OPTIONS"],
     allow_headers: ["content-type", "authorization"],
     allow_credentials: true
 
