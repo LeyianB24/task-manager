@@ -7,11 +7,12 @@ defmodule ChatAppWeb.WorkspaceController do
   action_fallback ChatAppWeb.FallbackController
 
   def index(conn, _params) do
-    workspaces = Workspaces.list_workspaces()
+    workspaces = Workspaces.list_user_workspaces(conn.assigns.current_user.id)
     render(conn, :index, workspaces: workspaces)
   end
 
   def create(conn, %{"workspace" => workspace_params}) do
+    workspace_params = Map.put(workspace_params, "owner_id", conn.assigns.current_user.id)
     with {:ok, %Workspace{} = workspace} <- Workspaces.create_workspace(workspace_params) do
       conn
       |> put_status(:created)

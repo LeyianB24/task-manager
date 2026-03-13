@@ -6,6 +6,11 @@ defmodule ChatAppWeb.BoardController do
 
   action_fallback ChatAppWeb.FallbackController
 
+  def index(conn, %{"workspace_id" => workspace_id}) do
+    boards = Workspaces.list_boards_for_workspace(workspace_id)
+    render(conn, :index, boards: boards)
+  end
+
   def index(conn, _params) do
     boards = Workspaces.list_boards()
     render(conn, :index, boards: boards)

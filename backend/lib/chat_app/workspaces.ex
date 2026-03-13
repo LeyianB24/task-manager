@@ -22,6 +22,15 @@ defmodule ChatApp.Workspaces do
   end
 
   @doc """
+  Returns the list of workspaces for a specific user.
+  """
+  def list_user_workspaces(user_id) do
+    Workspace
+    |> where([w], w.owner_id == ^user_id)
+    |> Repo.all()
+  end
+
+  @doc """
   Gets a single workspace.
 
   Raises `Ecto.NoResultsError` if the Workspace does not exist.

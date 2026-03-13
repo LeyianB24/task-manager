@@ -6,6 +6,11 @@ defmodule ChatAppWeb.TaskController do
 
   action_fallback ChatAppWeb.FallbackController
 
+  def index(conn, %{"board_id" => board_id}) do
+    tasks = Workspaces.list_tasks_for_board(board_id)
+    render(conn, :index, tasks: tasks)
+  end
+
   def index(conn, _params) do
     tasks = Workspaces.list_tasks()
     render(conn, :index, tasks: tasks)
