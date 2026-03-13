@@ -18,4 +18,18 @@ defmodule ChatApp.WorkspacesFixtures do
 
     workspace
   end
+
+  @doc """
+  Generate a board.
+  """
+  def board_fixture(attrs \\ %{}) do
+    {:ok, board} =
+      attrs
+      |> Enum.into(%{
+        name: "some name"
+      })
+      |> ChatApp.Workspaces.create_board()
+
+    board
+  end
 end
