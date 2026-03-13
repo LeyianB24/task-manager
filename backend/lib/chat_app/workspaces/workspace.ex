@@ -7,7 +7,7 @@ defmodule ChatApp.Workspaces.Workspace do
   schema "workspaces" do
     field :description, :string
     field :name, :string
-    field :owner_id, :binary_id
+    belongs_to :owner, ChatApp.Accounts.User, foreign_key: :owner_id, type: :binary_id
 
     timestamps(type: :utc_datetime)
   end
@@ -15,7 +15,7 @@ defmodule ChatApp.Workspaces.Workspace do
   @doc false
   def changeset(workspace, attrs) do
     workspace
-    |> cast(attrs, [:name, :description])
-    |> validate_required([:name, :description])
+    |> cast(attrs, [:name, :description, :owner_id])
+    |> validate_required([:name, :description, :owner_id])
   end
 end

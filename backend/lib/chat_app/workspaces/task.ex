@@ -9,8 +9,8 @@ defmodule ChatApp.Workspaces.Task do
     field :order, :integer
     field :status, :string
     field :title, :string
-    field :board_id, :binary_id
-    field :assignee_id, :binary_id
+    belongs_to :board, ChatApp.Workspaces.Board, type: :binary_id
+    belongs_to :assignee, ChatApp.Accounts.User, foreign_key: :assignee_id, type: :binary_id
 
     timestamps(type: :utc_datetime)
   end
@@ -18,7 +18,7 @@ defmodule ChatApp.Workspaces.Task do
   @doc false
   def changeset(task, attrs) do
     task
-    |> cast(attrs, [:title, :description, :status, :order])
-    |> validate_required([:title, :description, :status, :order])
+    |> cast(attrs, [:title, :description, :status, :order, :board_id, :assignee_id])
+    |> validate_required([:title, :description, :status, :order, :board_id])
   end
 end

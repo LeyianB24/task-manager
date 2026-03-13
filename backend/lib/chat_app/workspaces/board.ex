@@ -6,7 +6,7 @@ defmodule ChatApp.Workspaces.Board do
   @foreign_key_type :binary_id
   schema "boards" do
     field :name, :string
-    field :workspace_id, :binary_id
+    belongs_to :workspace, ChatApp.Workspaces.Workspace, type: :binary_id
 
     timestamps(type: :utc_datetime)
   end
@@ -14,7 +14,7 @@ defmodule ChatApp.Workspaces.Board do
   @doc false
   def changeset(board, attrs) do
     board
-    |> cast(attrs, [:name])
-    |> validate_required([:name])
+    |> cast(attrs, [:name, :workspace_id])
+    |> validate_required([:name, :workspace_id])
   end
 end
