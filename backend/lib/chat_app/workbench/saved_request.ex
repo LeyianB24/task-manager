@@ -11,14 +11,18 @@ defmodule ChatApp.Workbench.SavedRequest do
     field :name, :string
     field :url, :string
     field :user_id, :binary_id
+    field :workspace_id, :binary_id
+    field :project_id, :binary_id
 
+    belongs_to :workspace, ChatApp.Workspaces.Workspace, define_field: false
+    belongs_to :project, ChatApp.Projects.Project, define_field: false
     timestamps(type: :utc_datetime)
   end
 
   @doc false
   def changeset(saved_request, attrs) do
     saved_request
-    |> cast(attrs, [:name, :method, :url, :headers, :body])
+    |> cast(attrs, [:name, :method, :url, :headers, :body, :workspace_id, :project_id])
     |> validate_required([:name, :method, :url, :body])
   end
 end
