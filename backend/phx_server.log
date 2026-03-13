@@ -47,3 +47,294 @@ SELECT w0."id", w0."description", w0."name", w0."owner_id", w0."inserted_at", w0
 SELECT u0."id", u0."email", u0."name", u0."password_hash", u0."inserted_at", u0."updated_at" FROM "users" AS u0 WHERE (u0."email" = $1) ["test@example.com"]
 [90m↳ ChatApp.Accounts.authenticate_user/2, at: lib/chat_app/accounts.ex:109[0m
 [info] Sent 401 in 1917ms
+[error] ** (Bandit.HTTPError) Header read socket error: :closed
+[error] GenServer #PID<0.838.0> terminating
+** (Bandit.TransportError) Unrecoverable error: closed
+    (bandit 1.6.1) lib/bandit/http1/socket.ex:437: Bandit.HTTPTransport.Bandit.HTTP1.Socket.socket_error!/1
+    (bandit 1.6.1) lib/bandit/http1/socket.ex:344: Bandit.HTTPTransport.Bandit.HTTP1.Socket.send_headers/4
+    (bandit 1.6.1) lib/bandit/http1/socket.ex:422: Bandit.HTTPTransport.Bandit.HTTP1.Socket.send_on_error/2
+    (bandit 1.6.1) lib/bandit/pipeline.ex:223: Bandit.Pipeline.handle_error/7
+    (bandit 1.6.1) lib/bandit/http1/handler.ex:12: Bandit.HTTP1.Handler.handle_data/3
+    (bandit 1.6.1) lib/bandit/delegating_handler.ex:18: Bandit.DelegatingHandler.handle_data/3
+    (bandit 1.6.1) c:/Users/USER/Desktop/task-manager/backend/deps/thousand_island/lib/thousand_island/handler.ex:417: Bandit.DelegatingHandler.handle_continue/2
+    (stdlib 4.3.1.4) gen_server.erl:1123: :gen_server.try_dispatch/4
+    (stdlib 4.3.1.4) gen_server.erl:865: :gen_server.loop/7
+    (stdlib 4.3.1.4) proc_lib.erl:240: :proc_lib.init_p_do_apply/3
+Last message: {:continue, :handle_connection}
+State: {%ThousandIsland.Socket{socket: #Port<0.19>, transport_module: ThousandIsland.Transports.TCP, read_timeout: 60000, silent_terminate_on_error: false, span: %ThousandIsland.Telemetry{span_name: :connection, telemetry_span_context: #Reference<0.3097796509.886046724.16807>, start_time: -5764603653256192, start_metadata: %{parent_telemetry_span_context: #Reference<0.3097796509.886046722.17360>, remote_address: {127, 0, 0, 1}, remote_port: 51576, telemetry_span_context: #Reference<0.3097796509.886046724.16807>}}}, %{handler_module: Bandit.InitialHandler, http_1_enabled: true, http_2_enabled: true, opts: %{http: [], http_1: [], http_2: [], websocket: []}, plug: {Phoenix.Endpoint.SyncCodeReloadPlug, {ChatAppWeb.Endpoint, []}}}}
+[info] OPTIONS /api/users/register
+[info] Sent 200 in 512µs
+[info] POST /api/users/register
+[debug] Processing with ChatAppWeb.UserController.create/2
+  Parameters: %{"user" => %{"email" => "test@example.com", "name" => "Final Test", "password" => "[FILTERED]"}}
+  Pipelines: [:api]
+[debug] QUERY OK source="users" db=19.5ms queue=5.2ms idle=1572.8ms
+INSERT INTO "users" ("email","name","password_hash","inserted_at","updated_at","id") VALUES ($1,$2,$3,$4,$5,$6) ["test@example.com", "Final Test", "$pbkdf2-sha512$160000$fM1i3d2MeuYcxiiR.r/0Hw$r6bvU7OWRI4uwfenSG9al10W8zTb0jtPdJrsB95h1rtjY9PvQMtOL0ZG9jrb7ffWXpQrohddkCUHdeqMNff0Ow", ~U[2026-03-13 08:06:22Z], ~U[2026-03-13 08:06:22Z], "22733ac6-124f-4a15-958b-20d853c5e79c"]
+[90m↳ ChatAppWeb.UserController.create/2, at: lib/chat_app_web/controllers/user_controller.ex:10[0m
+[info] Sent 201 in 5979ms
+[info] OPTIONS /api/users/login
+[info] Sent 200 in 614µs
+[info] OPTIONS /api/users/login
+[info] Sent 200 in 716µs
+[info] POST /api/users/login
+[debug] Processing with ChatAppWeb.SessionController.create/2
+  Parameters: %{"email" => "test@example.com", "password" => "[FILTERED]"}
+  Pipelines: [:api]
+[debug] QUERY OK source="users" db=5.7ms queue=0.1ms idle=1286.9ms
+SELECT u0."id", u0."email", u0."name", u0."password_hash", u0."inserted_at", u0."updated_at" FROM "users" AS u0 WHERE (u0."email" = $1) ["test@example.com"]
+[90m↳ ChatApp.Accounts.authenticate_user/2, at: lib/chat_app/accounts.ex:109[0m
+[info] POST /api/users/login
+[debug] Processing with ChatAppWeb.SessionController.create/2
+  Parameters: %{"email" => "test@example.com", "password" => "[FILTERED]"}
+  Pipelines: [:api]
+[debug] QUERY OK source="users" db=13.5ms queue=0.1ms idle=1641.0ms
+SELECT u0."id", u0."email", u0."name", u0."password_hash", u0."inserted_at", u0."updated_at" FROM "users" AS u0 WHERE (u0."email" = $1) ["test@example.com"]
+[90m↳ ChatApp.Accounts.authenticate_user/2, at: lib/chat_app/accounts.ex:109[0m
+[info] Sent 200 in 5072ms
+[info] Sent 200 in 5040ms
+[info] OPTIONS /api/workspaces
+[info] Sent 200 in 1ms
+[info] OPTIONS /api/workspaces
+[info] Sent 200 in 204µs
+[info] OPTIONS /api/workspaces
+[info] Sent 200 in 204µs
+[info] GET /api/workspaces
+[debug] Processing with ChatAppWeb.WorkspaceController.index/2
+  Parameters: %{}
+  Pipelines: [:api_auth]
+[debug] QUERY OK source="users" db=5.4ms queue=0.4ms idle=1802.7ms
+SELECT u0."id", u0."email", u0."name", u0."password_hash", u0."inserted_at", u0."updated_at" FROM "users" AS u0 WHERE (u0."id" = $1) ["22733ac6-124f-4a15-958b-20d853c5e79c"]
+[90m↳ ChatAppWeb.Plugs.RequireAuth.call/2, at: lib/chat_app_web/plugs/require_auth.ex:12[0m
+[debug] QUERY OK source="workspaces" db=6.2ms queue=0.1ms idle=1809.2ms
+SELECT w0."id", w0."description", w0."name", w0."owner_id", w0."inserted_at", w0."updated_at" FROM "workspaces" AS w0 WHERE (w0."owner_id" = $1) ["22733ac6-124f-4a15-958b-20d853c5e79c"]
+[90m↳ ChatAppWeb.WorkspaceController.index/2, at: lib/chat_app_web/controllers/workspace_controller.ex:10[0m
+[info] Sent 200 in 31ms
+[info] GET /api/workspaces
+[debug] Processing with ChatAppWeb.WorkspaceController.index/2
+  Parameters: %{}
+  Pipelines: [:api_auth]
+[debug] QUERY OK source="users" db=10.3ms queue=0.2ms idle=1513.0ms
+SELECT u0."id", u0."email", u0."name", u0."password_hash", u0."inserted_at", u0."updated_at" FROM "users" AS u0 WHERE (u0."id" = $1) ["22733ac6-124f-4a15-958b-20d853c5e79c"]
+[90m↳ ChatAppWeb.Plugs.RequireAuth.call/2, at: lib/chat_app_web/plugs/require_auth.ex:12[0m
+[debug] QUERY OK source="workspaces" db=2.3ms queue=0.1ms idle=1523.6ms
+SELECT w0."id", w0."description", w0."name", w0."owner_id", w0."inserted_at", w0."updated_at" FROM "workspaces" AS w0 WHERE (w0."owner_id" = $1) ["22733ac6-124f-4a15-958b-20d853c5e79c"]
+[90m↳ ChatAppWeb.WorkspaceController.index/2, at: lib/chat_app_web/controllers/workspace_controller.ex:10[0m
+[info] Sent 200 in 28ms
+[info] GET /api/workspaces
+[debug] Processing with ChatAppWeb.WorkspaceController.index/2
+  Parameters: %{}
+  Pipelines: [:api_auth]
+[debug] QUERY OK source="users" db=1.1ms decode=0.1ms queue=0.3ms idle=1449.6ms
+SELECT u0."id", u0."email", u0."name", u0."password_hash", u0."inserted_at", u0."updated_at" FROM "users" AS u0 WHERE (u0."id" = $1) ["22733ac6-124f-4a15-958b-20d853c5e79c"]
+[90m↳ ChatAppWeb.Plugs.RequireAuth.call/2, at: lib/chat_app_web/plugs/require_auth.ex:12[0m
+[debug] QUERY OK source="workspaces" db=15.2ms queue=0.1ms idle=1451.7ms
+SELECT w0."id", w0."description", w0."name", w0."owner_id", w0."inserted_at", w0."updated_at" FROM "workspaces" AS w0 WHERE (w0."owner_id" = $1) ["22733ac6-124f-4a15-958b-20d853c5e79c"]
+[90m↳ ChatAppWeb.WorkspaceController.index/2, at: lib/chat_app_web/controllers/workspace_controller.ex:10[0m
+[info] Sent 200 in 32ms
+[info] OPTIONS /api/workspaces
+[info] Sent 200 in 307µs
+[info] POST /api/workspaces
+[debug] Processing with ChatAppWeb.WorkspaceController.create/2
+  Parameters: %{"workspace" => %{"description" => "yes", "name" => "Projects"}}
+  Pipelines: [:api_auth]
+[debug] QUERY OK source="users" db=11.5ms decode=0.1ms idle=1584.5ms
+SELECT u0."id", u0."email", u0."name", u0."password_hash", u0."inserted_at", u0."updated_at" FROM "users" AS u0 WHERE (u0."id" = $1) ["22733ac6-124f-4a15-958b-20d853c5e79c"]
+[90m↳ ChatAppWeb.Plugs.RequireAuth.call/2, at: lib/chat_app_web/plugs/require_auth.ex:12[0m
+[debug] QUERY OK source="workspaces" db=14.6ms decode=0.1ms queue=1.4ms idle=1597.2ms
+INSERT INTO "workspaces" ("description","name","owner_id","inserted_at","updated_at","id") VALUES ($1,$2,$3,$4,$5,$6) ["yes", "Projects", "22733ac6-124f-4a15-958b-20d853c5e79c", ~U[2026-03-13 08:07:05Z], ~U[2026-03-13 08:07:05Z], "c5253b52-cbbb-4985-b573-ea35d971ee03"]
+[90m↳ ChatAppWeb.WorkspaceController.create/2, at: lib/chat_app_web/controllers/workspace_controller.ex:16[0m
+[info] Sent 201 in 303ms
+[info] GET /api/workspaces
+[debug] Processing with ChatAppWeb.WorkspaceController.index/2
+  Parameters: %{}
+  Pipelines: [:api_auth]
+[debug] QUERY OK source="users" db=1.9ms queue=0.2ms idle=1432.1ms
+SELECT u0."id", u0."email", u0."name", u0."password_hash", u0."inserted_at", u0."updated_at" FROM "users" AS u0 WHERE (u0."id" = $1) ["22733ac6-124f-4a15-958b-20d853c5e79c"]
+[90m↳ ChatAppWeb.Plugs.RequireAuth.call/2, at: lib/chat_app_web/plugs/require_auth.ex:12[0m
+[debug] QUERY OK source="workspaces" db=7.4ms queue=0.1ms idle=1434.9ms
+SELECT w0."id", w0."description", w0."name", w0."owner_id", w0."inserted_at", w0."updated_at" FROM "workspaces" AS w0 WHERE (w0."owner_id" = $1) ["22733ac6-124f-4a15-958b-20d853c5e79c"]
+[90m↳ ChatAppWeb.WorkspaceController.index/2, at: lib/chat_app_web/controllers/workspace_controller.ex:10[0m
+[info] Sent 200 in 17ms
+[info] OPTIONS /api/workspaces
+[info] Sent 200 in 204µs
+[info] POST /api/workspaces
+[debug] Processing with ChatAppWeb.WorkspaceController.create/2
+  Parameters: %{"workspace" => %{"description" => "Manage dev tasks", "name" => "Development Team"}}
+  Pipelines: [:api_auth]
+[debug] QUERY OK source="users" db=2.2ms idle=809.1ms
+SELECT u0."id", u0."email", u0."name", u0."password_hash", u0."inserted_at", u0."updated_at" FROM "users" AS u0 WHERE (u0."id" = $1) ["22733ac6-124f-4a15-958b-20d853c5e79c"]
+[90m↳ ChatAppWeb.Plugs.RequireAuth.call/2, at: lib/chat_app_web/plugs/require_auth.ex:12[0m
+[debug] QUERY OK source="workspaces" db=5.8ms queue=1.1ms idle=812.1ms
+INSERT INTO "workspaces" ("description","name","owner_id","inserted_at","updated_at","id") VALUES ($1,$2,$3,$4,$5,$6) ["Manage dev tasks", "Development Team", "22733ac6-124f-4a15-958b-20d853c5e79c", ~U[2026-03-13 08:08:15Z], ~U[2026-03-13 08:08:15Z], "6a908b20-ca84-4916-8532-c25f24ff9e4e"]
+[90m↳ ChatAppWeb.WorkspaceController.create/2, at: lib/chat_app_web/controllers/workspace_controller.ex:16[0m
+[info] Sent 201 in 18ms
+[info] GET /api/workspaces
+[debug] Processing with ChatAppWeb.WorkspaceController.index/2
+  Parameters: %{}
+  Pipelines: [:api_auth]
+[debug] QUERY OK source="users" db=4.3ms queue=0.1ms idle=1197.4ms
+SELECT u0."id", u0."email", u0."name", u0."password_hash", u0."inserted_at", u0."updated_at" FROM "users" AS u0 WHERE (u0."id" = $1) ["22733ac6-124f-4a15-958b-20d853c5e79c"]
+[90m↳ ChatAppWeb.Plugs.RequireAuth.call/2, at: lib/chat_app_web/plugs/require_auth.ex:12[0m
+[debug] QUERY OK source="workspaces" db=0.7ms queue=0.1ms idle=1202.1ms
+SELECT w0."id", w0."description", w0."name", w0."owner_id", w0."inserted_at", w0."updated_at" FROM "workspaces" AS w0 WHERE (w0."owner_id" = $1) ["22733ac6-124f-4a15-958b-20d853c5e79c"]
+[90m↳ ChatAppWeb.WorkspaceController.index/2, at: lib/chat_app_web/controllers/workspace_controller.ex:10[0m
+[info] Sent 200 in 12ms
+[error] ** (Bandit.HTTPError) Header read socket error: :closed
+[error] GenServer #PID<0.940.0> terminating
+** (Bandit.TransportError) Unrecoverable error: closed
+    (bandit 1.6.1) lib/bandit/http1/socket.ex:437: Bandit.HTTPTransport.Bandit.HTTP1.Socket.socket_error!/1
+    (bandit 1.6.1) lib/bandit/http1/socket.ex:344: Bandit.HTTPTransport.Bandit.HTTP1.Socket.send_headers/4
+    (bandit 1.6.1) lib/bandit/http1/socket.ex:422: Bandit.HTTPTransport.Bandit.HTTP1.Socket.send_on_error/2
+    (bandit 1.6.1) lib/bandit/pipeline.ex:223: Bandit.Pipeline.handle_error/7
+    (bandit 1.6.1) lib/bandit/http1/handler.ex:12: Bandit.HTTP1.Handler.handle_data/3
+    (bandit 1.6.1) lib/bandit/delegating_handler.ex:18: Bandit.DelegatingHandler.handle_data/3
+    (bandit 1.6.1) c:/Users/USER/Desktop/task-manager/backend/deps/thousand_island/lib/thousand_island/handler.ex:417: Bandit.DelegatingHandler.handle_continue/2
+    (stdlib 4.3.1.4) gen_server.erl:1123: :gen_server.try_dispatch/4
+    (stdlib 4.3.1.4) gen_server.erl:865: :gen_server.loop/7
+    (stdlib 4.3.1.4) proc_lib.erl:240: :proc_lib.init_p_do_apply/3
+Last message: {:continue, :handle_connection}
+State: {%ThousandIsland.Socket{socket: #Port<0.24>, transport_module: ThousandIsland.Transports.TCP, read_timeout: 60000, silent_terminate_on_error: false, span: %ThousandIsland.Telemetry{span_name: :connection, telemetry_span_context: #Reference<0.3097796509.886046723.19913>, start_time: -5764601723000832, start_metadata: %{parent_telemetry_span_context: #Reference<0.3097796509.886046722.17365>, remote_address: {127, 0, 0, 1}, remote_port: 55375, telemetry_span_context: #Reference<0.3097796509.886046723.19913>}}}, %{handler_module: Bandit.InitialHandler, http_1_enabled: true, http_2_enabled: true, opts: %{http: [], http_1: [], http_2: [], websocket: []}, plug: {Phoenix.Endpoint.SyncCodeReloadPlug, {ChatAppWeb.Endpoint, []}}}}
+[info] OPTIONS /api/workspaces
+[info] Sent 200 in 204µs
+[info] OPTIONS /api/workspaces
+[info] Sent 200 in 204µs
+[info] OPTIONS /api/workspaces
+[info] Sent 200 in 204µs
+[info] GET /api/workspaces
+[info] OPTIONS /api/workspaces
+[info] Sent 200 in 204µs
+[debug] Processing with ChatAppWeb.WorkspaceController.index/2
+  Parameters: %{}
+  Pipelines: [:api_auth]
+[debug] QUERY OK source="users" db=1.9ms decode=0.1ms queue=0.1ms idle=605.5ms
+SELECT u0."id", u0."email", u0."name", u0."password_hash", u0."inserted_at", u0."updated_at" FROM "users" AS u0 WHERE (u0."id" = $1) ["22733ac6-124f-4a15-958b-20d853c5e79c"]
+[90m↳ ChatAppWeb.Plugs.RequireAuth.call/2, at: lib/chat_app_web/plugs/require_auth.ex:12[0m
+[debug] QUERY OK source="workspaces" db=1.2ms decode=0.1ms queue=0.1ms idle=401.3ms
+SELECT w0."id", w0."description", w0."name", w0."owner_id", w0."inserted_at", w0."updated_at" FROM "workspaces" AS w0 WHERE (w0."owner_id" = $1) ["22733ac6-124f-4a15-958b-20d853c5e79c"]
+[90m↳ ChatAppWeb.WorkspaceController.index/2, at: lib/chat_app_web/controllers/workspace_controller.ex:10[0m
+[info] Sent 200 in 9ms
+[info] GET /api/workspaces
+[debug] Processing with ChatAppWeb.WorkspaceController.index/2
+  Parameters: %{}
+  Pipelines: [:api_auth]
+[debug] QUERY OK source="users" db=5.0ms queue=0.1ms idle=641.6ms
+SELECT u0."id", u0."email", u0."name", u0."password_hash", u0."inserted_at", u0."updated_at" FROM "users" AS u0 WHERE (u0."id" = $1) ["22733ac6-124f-4a15-958b-20d853c5e79c"]
+[90m↳ ChatAppWeb.Plugs.RequireAuth.call/2, at: lib/chat_app_web/plugs/require_auth.ex:12[0m
+[debug] QUERY OK source="workspaces" db=0.9ms queue=0.1ms idle=647.1ms
+SELECT w0."id", w0."description", w0."name", w0."owner_id", w0."inserted_at", w0."updated_at" FROM "workspaces" AS w0 WHERE (w0."owner_id" = $1) ["22733ac6-124f-4a15-958b-20d853c5e79c"]
+[90m↳ ChatAppWeb.WorkspaceController.index/2, at: lib/chat_app_web/controllers/workspace_controller.ex:10[0m
+[info] Sent 200 in 10ms
+[info] GET /api/workspaces
+[debug] Processing with ChatAppWeb.WorkspaceController.index/2
+  Parameters: %{}
+  Pipelines: [:api_auth]
+[debug] QUERY OK source="users" db=0.8ms idle=911.6ms
+SELECT u0."id", u0."email", u0."name", u0."password_hash", u0."inserted_at", u0."updated_at" FROM "users" AS u0 WHERE (u0."id" = $1) ["22733ac6-124f-4a15-958b-20d853c5e79c"]
+[90m↳ ChatAppWeb.Plugs.RequireAuth.call/2, at: lib/chat_app_web/plugs/require_auth.ex:12[0m
+[debug] QUERY OK source="workspaces" db=0.8ms decode=0.1ms idle=912.0ms
+SELECT w0."id", w0."description", w0."name", w0."owner_id", w0."inserted_at", w0."updated_at" FROM "workspaces" AS w0 WHERE (w0."owner_id" = $1) ["22733ac6-124f-4a15-958b-20d853c5e79c"]
+[90m↳ ChatAppWeb.WorkspaceController.index/2, at: lib/chat_app_web/controllers/workspace_controller.ex:10[0m
+[info] Sent 200 in 6ms
+[info] GET /api/workspaces
+[debug] Processing with ChatAppWeb.WorkspaceController.index/2
+  Parameters: %{}
+  Pipelines: [:api_auth]
+[debug] QUERY OK source="users" db=1.1ms queue=0.2ms idle=513.5ms
+SELECT u0."id", u0."email", u0."name", u0."password_hash", u0."inserted_at", u0."updated_at" FROM "users" AS u0 WHERE (u0."id" = $1) ["22733ac6-124f-4a15-958b-20d853c5e79c"]
+[90m↳ ChatAppWeb.Plugs.RequireAuth.call/2, at: lib/chat_app_web/plugs/require_auth.ex:12[0m
+[debug] QUERY OK source="workspaces" db=5.7ms queue=0.1ms idle=504.4ms
+SELECT w0."id", w0."description", w0."name", w0."owner_id", w0."inserted_at", w0."updated_at" FROM "workspaces" AS w0 WHERE (w0."owner_id" = $1) ["22733ac6-124f-4a15-958b-20d853c5e79c"]
+[90m↳ ChatAppWeb.WorkspaceController.index/2, at: lib/chat_app_web/controllers/workspace_controller.ex:10[0m
+[info] Sent 200 in 11ms
+[error] ** (Bandit.HTTPError) Header read socket error: :closed
+[error] ** (Bandit.HTTPError) Header read socket error: :closed
+[error] GenServer #PID<0.977.0> terminating
+** (Bandit.TransportError) Unrecoverable error: closed
+    (bandit 1.6.1) lib/bandit/http1/socket.ex:437: Bandit.HTTPTransport.Bandit.HTTP1.Socket.socket_error!/1
+    (bandit 1.6.1) lib/bandit/http1/socket.ex:344: Bandit.HTTPTransport.Bandit.HTTP1.Socket.send_headers/4
+    (bandit 1.6.1) lib/bandit/http1/socket.ex:422: Bandit.HTTPTransport.Bandit.HTTP1.Socket.send_on_error/2
+    (bandit 1.6.1) lib/bandit/pipeline.ex:223: Bandit.Pipeline.handle_error/7
+    (bandit 1.6.1) lib/bandit/http1/handler.ex:12: Bandit.HTTP1.Handler.handle_data/3
+    (bandit 1.6.1) lib/bandit/delegating_handler.ex:18: Bandit.DelegatingHandler.handle_data/3
+    (bandit 1.6.1) c:/Users/USER/Desktop/task-manager/backend/deps/thousand_island/lib/thousand_island/handler.ex:417: Bandit.DelegatingHandler.handle_continue/2
+    (stdlib 4.3.1.4) gen_server.erl:1123: :gen_server.try_dispatch/4
+    (stdlib 4.3.1.4) gen_server.erl:865: :gen_server.loop/7
+    (stdlib 4.3.1.4) proc_lib.erl:240: :proc_lib.init_p_do_apply/3
+Last message: {:continue, :handle_connection}
+State: {%ThousandIsland.Socket{socket: #Port<0.29>, transport_module: ThousandIsland.Transports.TCP, read_timeout: 60000, silent_terminate_on_error: false, span: %ThousandIsland.Telemetry{span_name: :connection, telemetry_span_context: #Reference<0.3097796509.886046722.19003>, start_time: -5764598984257536, start_metadata: %{parent_telemetry_span_context: #Reference<0.3097796509.886046722.17371>, remote_address: {127, 0, 0, 1}, remote_port: 64015, telemetry_span_context: #Reference<0.3097796509.886046722.19003>}}}, %{handler_module: Bandit.InitialHandler, http_1_enabled: true, http_2_enabled: true, opts: %{http: [], http_1: [], http_2: [], websocket: []}, plug: {Phoenix.Endpoint.SyncCodeReloadPlug, {ChatAppWeb.Endpoint, []}}}}
+[error] GenServer #PID<0.978.0> terminating
+** (Bandit.TransportError) Unrecoverable error: closed
+    (bandit 1.6.1) lib/bandit/http1/socket.ex:437: Bandit.HTTPTransport.Bandit.HTTP1.Socket.socket_error!/1
+    (bandit 1.6.1) lib/bandit/http1/socket.ex:344: Bandit.HTTPTransport.Bandit.HTTP1.Socket.send_headers/4
+    (bandit 1.6.1) lib/bandit/http1/socket.ex:422: Bandit.HTTPTransport.Bandit.HTTP1.Socket.send_on_error/2
+    (bandit 1.6.1) lib/bandit/pipeline.ex:223: Bandit.Pipeline.handle_error/7
+    (bandit 1.6.1) lib/bandit/http1/handler.ex:12: Bandit.HTTP1.Handler.handle_data/3
+    (bandit 1.6.1) lib/bandit/delegating_handler.ex:18: Bandit.DelegatingHandler.handle_data/3
+    (bandit 1.6.1) c:/Users/USER/Desktop/task-manager/backend/deps/thousand_island/lib/thousand_island/handler.ex:417: Bandit.DelegatingHandler.handle_continue/2
+    (stdlib 4.3.1.4) gen_server.erl:1123: :gen_server.try_dispatch/4
+    (stdlib 4.3.1.4) gen_server.erl:865: :gen_server.loop/7
+    (stdlib 4.3.1.4) proc_lib.erl:240: :proc_lib.init_p_do_apply/3
+Last message: {:continue, :handle_connection}
+State: {%ThousandIsland.Socket{socket: #Port<0.30>, transport_module: ThousandIsland.Transports.TCP, read_timeout: 60000, silent_terminate_on_error: false, span: %ThousandIsland.Telemetry{span_name: :connection, telemetry_span_context: #Reference<0.3097796509.886046722.19010>, start_time: -5764598983388160, start_metadata: %{parent_telemetry_span_context: #Reference<0.3097796509.886046722.17373>, remote_address: {127, 0, 0, 1}, remote_port: 55639, telemetry_span_context: #Reference<0.3097796509.886046722.19010>}}}, %{handler_module: Bandit.InitialHandler, http_1_enabled: true, http_2_enabled: true, opts: %{http: [], http_1: [], http_2: [], websocket: []}, plug: {Phoenix.Endpoint.SyncCodeReloadPlug, {ChatAppWeb.Endpoint, []}}}}
+[info] OPTIONS /api/users/login
+[info] Sent 200 in 409µs
+[info] POST /api/users/login
+[debug] Processing with ChatAppWeb.SessionController.create/2
+  Parameters: %{"email" => "test@example.com", "password" => "[FILTERED]"}
+  Pipelines: [:api]
+[debug] QUERY OK source="users" db=9.5ms queue=0.2ms idle=793.4ms
+SELECT u0."id", u0."email", u0."name", u0."password_hash", u0."inserted_at", u0."updated_at" FROM "users" AS u0 WHERE (u0."email" = $1) ["test@example.com"]
+[90m↳ ChatApp.Accounts.authenticate_user/2, at: lib/chat_app/accounts.ex:109[0m
+[info] Sent 200 in 2053ms
+[info] OPTIONS /api/workspaces
+[info] Sent 200 in 102µs
+[info] OPTIONS /api/workspaces
+[info] Sent 200 in 204µs
+[info] GET /api/workspaces
+[debug] Processing with ChatAppWeb.WorkspaceController.index/2
+  Parameters: %{}
+  Pipelines: [:api_auth]
+[debug] QUERY OK source="users" db=1.3ms decode=0.1ms queue=0.1ms idle=1490.3ms
+SELECT u0."id", u0."email", u0."name", u0."password_hash", u0."inserted_at", u0."updated_at" FROM "users" AS u0 WHERE (u0."id" = $1) ["22733ac6-124f-4a15-958b-20d853c5e79c"]
+[90m↳ ChatAppWeb.Plugs.RequireAuth.call/2, at: lib/chat_app_web/plugs/require_auth.ex:12[0m
+[debug] QUERY OK source="workspaces" db=8.8ms queue=0.1ms idle=1492.2ms
+SELECT w0."id", w0."description", w0."name", w0."owner_id", w0."inserted_at", w0."updated_at" FROM "workspaces" AS w0 WHERE (w0."owner_id" = $1) ["22733ac6-124f-4a15-958b-20d853c5e79c"]
+[90m↳ ChatAppWeb.WorkspaceController.index/2, at: lib/chat_app_web/controllers/workspace_controller.ex:10[0m
+[info] Sent 200 in 15ms
+[info] GET /api/workspaces
+[debug] Processing with ChatAppWeb.WorkspaceController.index/2
+  Parameters: %{}
+  Pipelines: [:api_auth]
+[debug] QUERY OK source="users" db=7.4ms queue=0.2ms idle=906.0ms
+SELECT u0."id", u0."email", u0."name", u0."password_hash", u0."inserted_at", u0."updated_at" FROM "users" AS u0 WHERE (u0."id" = $1) ["22733ac6-124f-4a15-958b-20d853c5e79c"]
+[90m↳ ChatAppWeb.Plugs.RequireAuth.call/2, at: lib/chat_app_web/plugs/require_auth.ex:12[0m
+[debug] QUERY OK source="workspaces" db=13.5ms queue=0.1ms idle=899.4ms
+SELECT w0."id", w0."description", w0."name", w0."owner_id", w0."inserted_at", w0."updated_at" FROM "workspaces" AS w0 WHERE (w0."owner_id" = $1) ["22733ac6-124f-4a15-958b-20d853c5e79c"]
+[90m↳ ChatAppWeb.WorkspaceController.index/2, at: lib/chat_app_web/controllers/workspace_controller.ex:10[0m
+[info] Sent 200 in 28ms
+[info] OPTIONS /api/workspaces
+[info] Sent 200 in 307µs
+[info] OPTIONS /api/workspaces
+[info] Sent 200 in 204µs
+[info] GET /api/workspaces
+[debug] Processing with ChatAppWeb.WorkspaceController.index/2
+  Parameters: %{}
+  Pipelines: [:api_auth]
+[debug] QUERY OK source="users" db=6.9ms queue=0.2ms idle=439.3ms
+SELECT u0."id", u0."email", u0."name", u0."password_hash", u0."inserted_at", u0."updated_at" FROM "users" AS u0 WHERE (u0."id" = $1) ["22733ac6-124f-4a15-958b-20d853c5e79c"]
+[90m↳ ChatAppWeb.Plugs.RequireAuth.call/2, at: lib/chat_app_web/plugs/require_auth.ex:12[0m
+[debug] QUERY OK source="workspaces" db=1.7ms queue=0.1ms idle=447.1ms
+SELECT w0."id", w0."description", w0."name", w0."owner_id", w0."inserted_at", w0."updated_at" FROM "workspaces" AS w0 WHERE (w0."owner_id" = $1) ["22733ac6-124f-4a15-958b-20d853c5e79c"]
+[90m↳ ChatAppWeb.WorkspaceController.index/2, at: lib/chat_app_web/controllers/workspace_controller.ex:10[0m
+[info] Sent 200 in 13ms
+[info] GET /api/workspaces
+[debug] Processing with ChatAppWeb.WorkspaceController.index/2
+  Parameters: %{}
+  Pipelines: [:api_auth]
+[debug] QUERY OK source="users" db=1.7ms idle=1379.0ms
+SELECT u0."id", u0."email", u0."name", u0."password_hash", u0."inserted_at", u0."updated_at" FROM "users" AS u0 WHERE (u0."id" = $1) ["22733ac6-124f-4a15-958b-20d853c5e79c"]
+[90m↳ ChatAppWeb.Plugs.RequireAuth.call/2, at: lib/chat_app_web/plugs/require_auth.ex:12[0m
+[debug] QUERY OK source="workspaces" db=1.8ms queue=0.1ms idle=1381.2ms
+SELECT w0."id", w0."description", w0."name", w0."owner_id", w0."inserted_at", w0."updated_at" FROM "workspaces" AS w0 WHERE (w0."owner_id" = $1) ["22733ac6-124f-4a15-958b-20d853c5e79c"]
+[90m↳ ChatAppWeb.WorkspaceController.index/2, at: lib/chat_app_web/controllers/workspace_controller.ex:10[0m
+[info] Sent 200 in 12ms
