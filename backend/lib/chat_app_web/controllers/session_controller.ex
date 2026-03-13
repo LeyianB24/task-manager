@@ -9,7 +9,7 @@ defmodule ChatAppWeb.SessionController do
   def create(conn, %{"email" => email, "password" => password}) do
     case Accounts.authenticate_user(email, password) do
       {:ok, user} ->
-        token = Token.generate_and_sign!(%{"user_id" => user.id})
+        token = Token.create_token(user.id)
 
         conn
         |> put_status(:ok)

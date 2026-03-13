@@ -3,7 +3,6 @@ defmodule ChatAppWeb.UserController do
 
   alias ChatApp.Accounts
   alias ChatApp.Accounts.User
-  alias ChatApp.Auth.Token
 
   action_fallback ChatAppWeb.FallbackController
 

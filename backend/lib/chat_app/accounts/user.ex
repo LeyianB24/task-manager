@@ -28,7 +28,8 @@ defmodule ChatApp.Accounts.User do
   defp put_password_hash(
          %Ecto.Changeset{valid?: true, changes: %{password: password}} = changeset
        ) do
-    change(changeset, Pbkdf2.add_hash(password))
+    hash = Pbkdf2.hash_pwd_salt(password)
+    change(changeset, password_hash: hash)
   end
 
   defp put_password_hash(changeset), do: changeset
