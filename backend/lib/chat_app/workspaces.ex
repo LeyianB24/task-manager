@@ -127,6 +127,15 @@ defmodule ChatApp.Workspaces do
   end
 
   @doc """
+  Returns the list of boards for a specific workspace.
+  """
+  def list_boards_for_workspace(workspace_id) do
+    Board
+    |> where([b], b.workspace_id == ^workspace_id)
+    |> Repo.all()
+  end
+
+  @doc """
   Gets a single board.
 
   Raises `Ecto.NoResultsError` if the Board does not exist.
@@ -220,6 +229,16 @@ defmodule ChatApp.Workspaces do
   """
   def list_tasks do
     Repo.all(Task)
+  end
+
+  @doc """
+  Returns the list of tasks for a specific board.
+  """
+  def list_tasks_for_board(board_id) do
+    Task
+    |> where([t], t.board_id == ^board_id)
+    |> order_by([t], asc: t.order)
+    |> Repo.all()
   end
 
   @doc """
