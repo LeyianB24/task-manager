@@ -53,8 +53,9 @@ defmodule ChatAppWeb.Endpoint do
   plug Plug.Session, @session_options
 
   plug Corsica,
-    origins: ["http://localhost:5173"], # adjust for your frontend URL
-    allow_headers: ["content-type"]
+    origins: ["http://localhost:3000"],
+    allow_headers: ["content-type", "authorization"],
+    allow_credentials: true
 
   plug ChatAppWeb.Router
 end
