@@ -7,6 +7,21 @@ defmodule ChatAppWeb.Router do
 
   scope "/api", ChatAppWeb do
     pipe_through :api
+
+    post "/users/register", UserController, :create
+    post "/users/login", SessionController, :create
+  end
+
+  # Protected API Routes
+  pipeline :api_auth do
+    plug :api
+    plug ChatAppWeb.Plugs.RequireAuth
+  end
+
+  scope "/api", ChatAppWeb do
+    pipe_through :api_auth
+    
+    # Future routes like workspaces, boards, tasks go here
   end
 
   # Enable LiveDashboard in development
