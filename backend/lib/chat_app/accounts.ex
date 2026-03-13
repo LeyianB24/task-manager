@@ -101,4 +101,30 @@ defmodule ChatApp.Accounts do
   def change_user(%User{} = user, attrs \\ %{}) do
     User.changeset(user, attrs)
   end
+
+  @doc """
+  Authenticates a user by email and password.
+  """
+  def authenticate_user(email, password) do
+    user = get_user_by_email(email)
+
+    cond do
+      user && Pbkdf2.verify_pass(password, user.password_hash) ->
+        {:ok, user}
+
+      user ->
+        {:error, :unauthorized}
+
+      true ->
+        Pbkdf2.no_user_verify()
+        {:error, :not_found}
+    end
+  end
+
+  @doc """
+  Gets a user by email.
+  """
+  def get_user_by_email(email) do
+    Repo.get_by(User, email: email)
+  end
 end
