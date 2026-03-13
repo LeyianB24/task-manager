@@ -1061,3 +1061,77 @@ SELECT w0."id", w0."description", w0."name", w0."owner_id", w0."inserted_at", w0
 [90m↳ ChatAppWeb.WorkspaceController.index/2, at: lib/chat_app_web/controllers/workspace_controller.ex:10[0m
 [info] Sent 200 in 5ms
 [error] ** (Bandit.HTTPError) Header read timeout
+[info] OPTIONS /api/users/register
+[info] Sent 200 in 307µs
+[info] POST /api/users/register
+[debug] Processing with ChatAppWeb.UserController.create/2
+  Parameters: %{"user" => %{"email" => "leyianbeza24@gmail.com", "name" => "Bezalel Leyian", "password" => "[FILTERED]"}}
+  Pipelines: [:api]
+[debug] QUERY OK source="users" db=13.9ms queue=6.7ms idle=113.8ms
+INSERT INTO "users" ("email","name","password_hash","inserted_at","updated_at","id") VALUES ($1,$2,$3,$4,$5,$6) ["leyianbeza24@gmail.com", "Bezalel Leyian", "$pbkdf2-sha512$160000$dwgXdzyfVNb5xbv8fgqvTA$z4Qie.HmMnTlkxR6baIOmK87uMfrEGVxW5IKD4SMnJR71/xG/08ggVAy7HV9.WQMniYa0KBTtVcFk1fMXXprSQ", ~U[2026-03-13 09:05:40Z], ~U[2026-03-13 09:05:40Z], "cb53c7c0-9c15-4554-ace1-636b8757b489"]
+[90m↳ ChatAppWeb.UserController.create/2, at: lib/chat_app_web/controllers/user_controller.ex:10[0m
+[info] Sent 201 in 1679ms
+[info] OPTIONS /api/users/login
+[info] Sent 200 in 204µs
+[info] POST /api/users/login
+[debug] Processing with ChatAppWeb.SessionController.create/2
+  Parameters: %{"email" => "leyianbeza24@gmail.com", "password" => "[FILTERED]"}
+  Pipelines: [:api]
+[debug] QUERY OK source="users" db=1.9ms idle=444.1ms
+SELECT u0."id", u0."email", u0."name", u0."password_hash", u0."inserted_at", u0."updated_at" FROM "users" AS u0 WHERE (u0."email" = $1) ["leyianbeza24@gmail.com"]
+[90m↳ ChatApp.Accounts.authenticate_user/2, at: lib/chat_app/accounts.ex:109[0m
+[info] Sent 200 in 1392ms
+[info] OPTIONS /api/workspaces
+[info] Sent 200 in 102µs
+[info] OPTIONS /api/workspaces
+[info] Sent 200 in 204µs
+[info] GET /api/workspaces
+[debug] Processing with ChatAppWeb.WorkspaceController.index/2
+  Parameters: %{}
+  Pipelines: [:api_auth]
+[debug] QUERY OK source="users" db=0.7ms idle=445.1ms
+SELECT u0."id", u0."email", u0."name", u0."password_hash", u0."inserted_at", u0."updated_at" FROM "users" AS u0 WHERE (u0."id" = $1) ["cb53c7c0-9c15-4554-ace1-636b8757b489"]
+[90m↳ ChatAppWeb.Plugs.RequireAuth.call/2, at: lib/chat_app_web/plugs/require_auth.ex:12[0m
+[debug] QUERY OK source="workspaces" db=0.4ms idle=446.0ms
+SELECT w0."id", w0."description", w0."name", w0."owner_id", w0."inserted_at", w0."updated_at" FROM "workspaces" AS w0 WHERE (w0."owner_id" = $1) ["cb53c7c0-9c15-4554-ace1-636b8757b489"]
+[90m↳ ChatAppWeb.WorkspaceController.index/2, at: lib/chat_app_web/controllers/workspace_controller.ex:10[0m
+[info] Sent 200 in 3ms
+[info] GET /api/workspaces
+[debug] Processing with ChatAppWeb.WorkspaceController.index/2
+  Parameters: %{}
+  Pipelines: [:api_auth]
+[debug] QUERY OK source="users" db=0.9ms queue=0.1ms idle=301.4ms
+SELECT u0."id", u0."email", u0."name", u0."password_hash", u0."inserted_at", u0."updated_at" FROM "users" AS u0 WHERE (u0."id" = $1) ["cb53c7c0-9c15-4554-ace1-636b8757b489"]
+[90m↳ ChatAppWeb.Plugs.RequireAuth.call/2, at: lib/chat_app_web/plugs/require_auth.ex:12[0m
+[debug] QUERY OK source="workspaces" db=0.4ms idle=291.6ms
+SELECT w0."id", w0."description", w0."name", w0."owner_id", w0."inserted_at", w0."updated_at" FROM "workspaces" AS w0 WHERE (w0."owner_id" = $1) ["cb53c7c0-9c15-4554-ace1-636b8757b489"]
+[90m↳ ChatAppWeb.WorkspaceController.index/2, at: lib/chat_app_web/controllers/workspace_controller.ex:10[0m
+[info] Sent 200 in 3ms
+[info] OPTIONS /api/workspaces
+[info] Sent 200 in 1ms
+[info] GET /api/workspaces
+[debug] Processing with ChatAppWeb.WorkspaceController.index/2
+  Parameters: %{}
+  Pipelines: [:api_auth]
+[debug] QUERY OK source="users" db=4.5ms queue=0.2ms idle=1284.8ms
+SELECT u0."id", u0."email", u0."name", u0."password_hash", u0."inserted_at", u0."updated_at" FROM "users" AS u0 WHERE (u0."id" = $1) ["cb53c7c0-9c15-4554-ace1-636b8757b489"]
+[90m↳ ChatAppWeb.Plugs.RequireAuth.call/2, at: lib/chat_app_web/plugs/require_auth.ex:12[0m
+[debug] QUERY OK source="workspaces" db=2.1ms queue=0.1ms idle=371.9ms
+SELECT w0."id", w0."description", w0."name", w0."owner_id", w0."inserted_at", w0."updated_at" FROM "workspaces" AS w0 WHERE (w0."owner_id" = $1) ["cb53c7c0-9c15-4554-ace1-636b8757b489"]
+[90m↳ ChatAppWeb.WorkspaceController.index/2, at: lib/chat_app_web/controllers/workspace_controller.ex:10[0m
+[info] Sent 200 in 49ms
+[error] ** (Bandit.HTTPError) Header read timeout
+[info] OPTIONS /api/workspaces
+[info] Sent 200 in 204µs
+[info] GET /api/workspaces
+[debug] Processing with ChatAppWeb.WorkspaceController.index/2
+  Parameters: %{}
+  Pipelines: [:api_auth]
+[debug] QUERY OK source="users" db=1.5ms idle=1267.8ms
+SELECT u0."id", u0."email", u0."name", u0."password_hash", u0."inserted_at", u0."updated_at" FROM "users" AS u0 WHERE (u0."id" = $1) ["cb53c7c0-9c15-4554-ace1-636b8757b489"]
+[90m↳ ChatAppWeb.Plugs.RequireAuth.call/2, at: lib/chat_app_web/plugs/require_auth.ex:12[0m
+[debug] QUERY OK source="workspaces" db=0.7ms idle=1269.6ms
+SELECT w0."id", w0."description", w0."name", w0."owner_id", w0."inserted_at", w0."updated_at" FROM "workspaces" AS w0 WHERE (w0."owner_id" = $1) ["cb53c7c0-9c15-4554-ace1-636b8757b489"]
+[90m↳ ChatAppWeb.WorkspaceController.index/2, at: lib/chat_app_web/controllers/workspace_controller.ex:10[0m
+[info] Sent 200 in 5ms
+[error] ** (Bandit.HTTPError) Header read timeout
