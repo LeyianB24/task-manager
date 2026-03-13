@@ -42,7 +42,10 @@ defmodule ChatApp.MixProject do
       {:jason, "~> 1.2"},
       {:dns_cluster, "~> 0.1.1"},
       {:bandit, "~> 1.5"},
-      {:corsica, "~> 2.1.3"}
+      {:corsica, "~> 2.1.3"},
+      {:pbkdf2_elixir, "~> 2.0"},
+      {:joken, "~> 2.6"},
+      {:jose, "1.11.8", override: true}
     ]
   end
 
