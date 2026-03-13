@@ -3,9 +3,9 @@ import Config
 # Configure your database
 config :chat_app, ChatApp.Repo,
   username: "postgres",
-  password: "postgres",
+  password: "",
   hostname: "localhost",
-  database: "chat_app_dev",
+  database: "task_manager_dev",
   stacktrace: true,
   show_sensitive_data_on_connection_error: true,
   pool_size: 10
