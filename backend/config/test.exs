@@ -7,7 +7,7 @@ import Config
 # Run `mix help test` for more information.
 config :chat_app, ChatApp.Repo,
   username: "postgres",
-  password: "postgres",
+  password: "7136",
   hostname: "localhost",
   database: "chat_app_test#{System.get_env("MIX_TEST_PARTITION")}",
   pool: Ecto.Adapters.SQL.Sandbox,

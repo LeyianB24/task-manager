@@ -338,3 +338,4 @@ SELECT u0."id", u0."email", u0."name", u0."password_hash", u0."inserted_at", u0.
 SELECT w0."id", w0."description", w0."name", w0."owner_id", w0."inserted_at", w0."updated_at" FROM "workspaces" AS w0 WHERE (w0."owner_id" = $1) ["22733ac6-124f-4a15-958b-20d853c5e79c"]
 [90m↳ ChatAppWeb.WorkspaceController.index/2, at: lib/chat_app_web/controllers/workspace_controller.ex:10[0m
 [info] Sent 200 in 12ms
+[error] ** (Bandit.HTTPError) Header read timeout
