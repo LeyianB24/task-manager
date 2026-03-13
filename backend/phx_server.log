@@ -10,3 +10,40 @@ Please add `runtime: false` in your `mix.exs` dependency section e.g.:
 [warning] Phoenix is unable to create symlinks. Phoenix' code reloader will run considerably faster if symlinks are allowed. On Windows, the lack of symlinks may even cause empty assets to be served. Luckily, you can address this issue by starting your Windows terminal at least once with "Run as Administrator" and then running your Phoenix application.
 [info] Running ChatAppWeb.Endpoint with Bandit 1.6.1 at 127.0.0.1:4000 (http)
 [info] Access ChatAppWeb.Endpoint at http://localhost:4000
+[info] OPTIONS /api/workspaces
+[info] OPTIONS /api/workspaces
+[info] Sent 200 in 612ms
+[info] Sent 200 in 612ms
+[info] GET /api/workspaces
+[debug] Processing with ChatAppWeb.WorkspaceController.index/2
+  Parameters: %{}
+  Pipelines: [:api_auth]
+[debug] QUERY OK source="users" db=63.0ms queue=3.1ms idle=1806.8ms
+SELECT u0."id", u0."email", u0."name", u0."password_hash", u0."inserted_at", u0."updated_at" FROM "users" AS u0 WHERE (u0."id" = $1) ["37f2e482-8527-4b39-bd09-9ad5a9131ebf"]
+[90m↳ ChatAppWeb.Plugs.RequireAuth.call/2, at: lib/chat_app_web/plugs/require_auth.ex:12[0m
+[debug] QUERY OK source="workspaces" db=5.5ms decode=0.1ms queue=2.5ms idle=1994.9ms
+SELECT w0."id", w0."description", w0."name", w0."owner_id", w0."inserted_at", w0."updated_at" FROM "workspaces" AS w0 WHERE (w0."owner_id" = $1) ["37f2e482-8527-4b39-bd09-9ad5a9131ebf"]
+[90m↳ ChatAppWeb.WorkspaceController.index/2, at: lib/chat_app_web/controllers/workspace_controller.ex:10[0m
+[info] Sent 200 in 1725ms
+[info] GET /api/workspaces
+[debug] Processing with ChatAppWeb.WorkspaceController.index/2
+  Parameters: %{}
+  Pipelines: [:api_auth]
+[debug] QUERY OK source="users" db=9.0ms queue=0.8ms idle=1830.0ms
+SELECT u0."id", u0."email", u0."name", u0."password_hash", u0."inserted_at", u0."updated_at" FROM "users" AS u0 WHERE (u0."id" = $1) ["37f2e482-8527-4b39-bd09-9ad5a9131ebf"]
+[90m↳ ChatAppWeb.Plugs.RequireAuth.call/2, at: lib/chat_app_web/plugs/require_auth.ex:12[0m
+[debug] QUERY OK source="workspaces" db=6.1ms queue=0.1ms idle=1840.4ms
+SELECT w0."id", w0."description", w0."name", w0."owner_id", w0."inserted_at", w0."updated_at" FROM "workspaces" AS w0 WHERE (w0."owner_id" = $1) ["37f2e482-8527-4b39-bd09-9ad5a9131ebf"]
+[90m↳ ChatAppWeb.WorkspaceController.index/2, at: lib/chat_app_web/controllers/workspace_controller.ex:10[0m
+[info] Sent 200 in 23ms
+[error] ** (Bandit.HTTPError) Header read timeout
+[info] OPTIONS /api/users/login
+[info] Sent 200 in 204µs
+[info] POST /api/users/login
+[debug] Processing with ChatAppWeb.SessionController.create/2
+  Parameters: %{"email" => "test@example.com", "password" => "[FILTERED]"}
+  Pipelines: [:api]
+[debug] QUERY OK source="users" db=7.6ms queue=3.6ms idle=1034.2ms
+SELECT u0."id", u0."email", u0."name", u0."password_hash", u0."inserted_at", u0."updated_at" FROM "users" AS u0 WHERE (u0."email" = $1) ["test@example.com"]
+[90m↳ ChatApp.Accounts.authenticate_user/2, at: lib/chat_app/accounts.ex:109[0m
+[info] Sent 401 in 1917ms
